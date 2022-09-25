@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: none;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Resetleme*/
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.container{
+    height: 100%;
+    transition: 240ms transform;
+}
+.navbar{
+    position: fixed;
+    top: 10px;
+    left: 15px;
+    width: 300px;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: 300ms transform;
+}
+.navbar a{
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    padding: 15px 30px;
+}
+.container .header{
+    height: 60px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.container .header a{
+    margin-left: 60px;
+    text-decoration: none;
+    color: black;
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.hamburger-menu {
+    --space: 4px;                  /* space-i deyiserek butun olculeri deyisirem*/
+    width: calc(var(--space)*10);  /* calc ile hesabladim */
+    height: calc(var(--space)*6);
+    display: block;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+#menu{
+    display: none;
+}
+
+.container .header .hamburger-menu span,
+span::before,
+span::after {
+    content: '';
+    height: calc(var(--space)*1.25);
+    width: 100%;
+    display: block;
+    background-color: black;
+}
+
+
+span{
+    transform: translateY(25px);
+    transition: 200ms background-color;
+}
+
+span::before {
+    position: absolute;
+    bottom: calc(var(--space) * 2.5);
+    transition: 200ms 200ms transform, 200ms bottom;
+}
+
+span::after {
+    position: absolute;
+    top: calc(var(--space) * 2.5);
+    transition: 200ms 200ms transform, 200ms top;
+}
+#menu:checked + .container{
+    transform: translateX(300px);
+}
+#menu:checked ~ .navbar{
+    transform: translateX(0);
+}
+input:checked + .container .header  .hamburger-menu span{
+    background: transparent;
+}
+input:checked +.container .header  .hamburger-menu span::before{
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+input:checked +.container .header  .hamburger-menu span::after{
+    transform: rotate(45deg);
+    top: 0;
+}
